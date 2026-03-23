@@ -102,7 +102,7 @@
 <body>
     <div class="calculator">
         <h1>Lightreach Pulse Commission Calculator</h1>
-        <div class="subtitle">Built from the uploaded pricing matrix</div>
+        <div class="subtitle">Using matrix $/Watt from the pricing sheet</div>
 
         <div class="grid">
             <div class="input-group">
@@ -112,80 +112,74 @@
             </div>
 
             <div class="input-group">
-                <label for="redline">Redline (PPW):</label>
-                <input type="number" id="redline" step="0.01" value="">
-                <div class="helper">Enter your redline per watt.</div>
-            </div>
-
-            <div class="input-group">
                 <label for="mods">Number of 405W Modules:</label>
                 <select id="mods">
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-                <option value="46">46</option>
-                <option value="47">47</option>
-                <option value="48">48</option>
-                <option value="49">49</option>
-                <option value="50">50</option>
-                <option value="51">51</option>
-                <option value="52">52</option>
-                <option value="53">53</option>
-                <option value="54">54</option>
-                <option value="55">55</option>
-                <option value="56">56</option>
-                <option value="57">57</option>
-                <option value="58">58</option>
-                <option value="59">59</option>
-                <option value="60">60</option>
-                <option value="61">61</option>
-                <option value="62">62</option>
-                <option value="63">63</option>
-                <option value="64">64</option>
-                <option value="65">65</option>
-                <option value="66">66</option>
-                <option value="67">67</option>
-                <option value="68">68</option>
-                <option value="69">69</option>
-                <option value="70">70</option>
-                <option value="71">71</option>
-                <option value="72">72</option>
-                <option value="73">73</option>
-                <option value="74">74</option>
-                <option value="75">75</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">54</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                    <option value="60">60</option>
+                    <option value="61">61</option>
+                    <option value="62">62</option>
+                    <option value="63">63</option>
+                    <option value="64">64</option>
+                    <option value="65">65</option>
+                    <option value="66">66</option>
+                    <option value="67">67</option>
+                    <option value="68">68</option>
+                    <option value="69">69</option>
+                    <option value="70">70</option>
+                    <option value="71">71</option>
+                    <option value="72">72</option>
+                    <option value="73">73</option>
+                    <option value="74">74</option>
+                    <option value="75">75</option>
                 </select>
                 <div class="helper">Range pulled from the matrix: 10 to 75 modules.</div>
             </div>
@@ -215,16 +209,16 @@
                     <td id="pw3Count"></td>
                 </tr>
                 <tr>
-                    <td>Matrix Base PPW</td>
-                    <td id="basePPW"></td>
+                    <td>Matrix $/Watt</td>
+                    <td id="matrixPPW"></td>
                 </tr>
                 <tr>
-                    <td>EPC PPW</td>
-                    <td id="epcPPW"></td>
+                    <td>Equipment Cost</td>
+                    <td id="equipmentCost"></td>
                 </tr>
                 <tr>
-                    <td>EPC Amount</td>
-                    <td id="epcAmount"></td>
+                    <td>Expansion Cost</td>
+                    <td id="expansionCost"></td>
                 </tr>
                 <tr>
                     <td>Total Commission</td>
@@ -234,12 +228,80 @@
         </div>
 
         <div class="footnote">
-            **PRICES ABOVE ARE ONLY AN ESTIMATE**
+            **PRICES ABOVE ARE ONLY AN ESTIMATE**<br>
+            This version uses the pricing matrix $/Watt directly as the equipment cost basis.
         </div>
     </div>
 
     <script>
-        const pricingMatrix = [{"mods":10,"watts":4050,"basePPW":3.02963,"pw3Count":1},{"mods":11,"watts":4455,"basePPW":2.835017,"pw3Count":1},{"mods":12,"watts":4860,"basePPW":2.666255,"pw3Count":1},{"mods":13,"watts":5265,"basePPW":2.529535,"pw3Count":1},{"mods":14,"watts":5670,"basePPW":2.406702,"pw3Count":1},{"mods":15,"watts":6075,"basePPW":2.305514,"pw3Count":1},{"mods":16,"watts":6480,"basePPW":2.212037,"pw3Count":1},{"mods":17,"watts":6885,"basePPW":2.134205,"pw3Count":1},{"mods":18,"watts":7290,"basePPW":2.060631,"pw3Count":1},{"mods":19,"watts":7695,"basePPW":1.99896,"pw3Count":1},{"mods":20,"watts":8100,"basePPW":1.939506,"pw3Count":1},{"mods":21,"watts":8505,"basePPW":1.889477,"pw3Count":1},{"mods":22,"watts":8910,"basePPW":1.840404,"pw3Count":1},{"mods":23,"watts":9315,"basePPW":1.799034,"pw3Count":1},{"mods":24,"watts":9720,"basePPW":1.757819,"pw3Count":1},{"mods":25,"watts":10125,"basePPW":1.723062,"pw3Count":1},{"mods":26,"watts":10530,"basePPW":1.687939,"pw3Count":1},{"mods":27,"watts":10935,"basePPW":1.658345,"pw3Count":1},{"mods":28,"watts":11340,"basePPW":1.628042,"pw3Count":1},{"mods":29,"watts":11745,"basePPW":1.602554,"pw3Count":1},{"mods":30,"watts":12150,"basePPW":1.576132,"pw3Count":1},{"mods":31,"watts":12555,"basePPW":1.553963,"pw3Count":1},{"mods":32,"watts":12960,"basePPW":1.53071,"pw3Count":1},{"mods":33,"watts":13365,"basePPW":1.511261,"pw3Count":1},{"mods":34,"watts":13770,"basePPW":1.490632,"pw3Count":1},{"mods":35,"watts":14175,"basePPW":1.473439,"pw3Count":1},{"mods":36,"watts":14580,"basePPW":1.455007,"pw3Count":1},{"mods":37,"watts":14985,"basePPW":1.439706,"pw3Count":1},{"mods":38,"watts":15390,"basePPW":1.423132,"pw3Count":1},{"mods":39,"watts":15795,"basePPW":1.409433,"pw3Count":1},{"mods":40,"watts":16200,"basePPW":1.394444,"pw3Count":1},{"mods":41,"watts":16605,"basePPW":1.382114,"pw3Count":1},{"mods":42,"watts":17010,"basePPW":1.368489,"pw3Count":1},{"mods":43,"watts":17415,"basePPW":1.357336,"pw3Count":1},{"mods":44,"watts":17820,"basePPW":1.344893,"pw3Count":1},{"mods":45,"watts":18225,"basePPW":1.771797,"pw3Count":2},{"mods":46,"watts":18630,"basePPW":1.750886,"pw3Count":2},{"mods":47,"watts":19035,"basePPW":1.732545,"pw3Count":2},{"mods":48,"watts":19440,"basePPW":1.713323,"pw3Count":2},{"mods":49,"watts":19845,"basePPW":1.696498,"pw3Count":2},{"mods":50,"watts":20250,"basePPW":1.678765,"pw3Count":2},{"mods":51,"watts":20655,"basePPW":1.663278,"pw3Count":2},{"mods":52,"watts":21060,"basePPW":1.646866,"pw3Count":2},{"mods":53,"watts":21465,"basePPW":1.632565,"pw3Count":2},{"mods":54,"watts":21870,"basePPW":1.61733,"pw3Count":2},{"mods":55,"watts":22275,"basePPW":1.604085,"pw3Count":2},{"mods":56,"watts":22680,"basePPW":1.589903,"pw3Count":2},{"mods":57,"watts":23085,"basePPW":1.577605,"pw3Count":2},{"mods":58,"watts":23490,"basePPW":1.564368,"pw3Count":2},{"mods":59,"watts":23895,"basePPW":1.552919,"pw3Count":2},{"mods":60,"watts":24300,"basePPW":1.540535,"pw3Count":2},{"mods":61,"watts":24705,"basePPW":1.529852,"pw3Count":2},{"mods":62,"watts":25110,"basePPW":1.51824,"pw3Count":2},{"mods":63,"watts":25515,"basePPW":1.50825,"pw3Count":2},{"mods":64,"watts":25920,"basePPW":1.497338,"pw3Count":2},{"mods":65,"watts":26325,"basePPW":1.487977,"pw3Count":2},{"mods":66,"watts":26730,"basePPW":1.477703,"pw3Count":2},{"mods":67,"watts":27135,"basePPW":1.468915,"pw3Count":2},{"mods":68,"watts":27540,"basePPW":1.459223,"pw3Count":2},{"mods":69,"watts":27945,"basePPW":1.450957,"pw3Count":2},{"mods":70,"watts":28350,"basePPW":1.441799,"pw3Count":2},{"mods":71,"watts":28755,"basePPW":1.434011,"pw3Count":2},{"mods":72,"watts":29160,"basePPW":1.425343,"pw3Count":2},{"mods":73,"watts":29565,"basePPW":1.417994,"pw3Count":2},{"mods":74,"watts":29970,"basePPW":1.409776,"pw3Count":2},{"mods":75,"watts":30375,"basePPW":1.402831,"pw3Count":2}];
+        const pricingMatrix = [
+            {"mods":10,"watts":4050,"basePPW":3.02963,"pw3Count":1},
+            {"mods":11,"watts":4455,"basePPW":2.835017,"pw3Count":1},
+            {"mods":12,"watts":4860,"basePPW":2.666255,"pw3Count":1},
+            {"mods":13,"watts":5265,"basePPW":2.529535,"pw3Count":1},
+            {"mods":14,"watts":5670,"basePPW":2.406702,"pw3Count":1},
+            {"mods":15,"watts":6075,"basePPW":2.305514,"pw3Count":1},
+            {"mods":16,"watts":6480,"basePPW":2.212037,"pw3Count":1},
+            {"mods":17,"watts":6885,"basePPW":2.134205,"pw3Count":1},
+            {"mods":18,"watts":7290,"basePPW":2.060631,"pw3Count":1},
+            {"mods":19,"watts":7695,"basePPW":1.99896,"pw3Count":1},
+            {"mods":20,"watts":8100,"basePPW":1.939506,"pw3Count":1},
+            {"mods":21,"watts":8505,"basePPW":1.889477,"pw3Count":1},
+            {"mods":22,"watts":8910,"basePPW":1.840404,"pw3Count":1},
+            {"mods":23,"watts":9315,"basePPW":1.799034,"pw3Count":1},
+            {"mods":24,"watts":9720,"basePPW":1.757819,"pw3Count":1},
+            {"mods":25,"watts":10125,"basePPW":1.723062,"pw3Count":1},
+            {"mods":26,"watts":10530,"basePPW":1.687939,"pw3Count":1},
+            {"mods":27,"watts":10935,"basePPW":1.658345,"pw3Count":1},
+            {"mods":28,"watts":11340,"basePPW":1.628042,"pw3Count":1},
+            {"mods":29,"watts":11745,"basePPW":1.602554,"pw3Count":1},
+            {"mods":30,"watts":12150,"basePPW":1.576132,"pw3Count":1},
+            {"mods":31,"watts":12555,"basePPW":1.553963,"pw3Count":1},
+            {"mods":32,"watts":12960,"basePPW":1.53071,"pw3Count":1},
+            {"mods":33,"watts":13365,"basePPW":1.511261,"pw3Count":1},
+            {"mods":34,"watts":13770,"basePPW":1.490632,"pw3Count":1},
+            {"mods":35,"watts":14175,"basePPW":1.473439,"pw3Count":1},
+            {"mods":36,"watts":14580,"basePPW":1.455007,"pw3Count":1},
+            {"mods":37,"watts":14985,"basePPW":1.439706,"pw3Count":1},
+            {"mods":38,"watts":15390,"basePPW":1.423132,"pw3Count":1},
+            {"mods":39,"watts":15795,"basePPW":1.409433,"pw3Count":1},
+            {"mods":40,"watts":16200,"basePPW":1.394444,"pw3Count":1},
+            {"mods":41,"watts":16605,"basePPW":1.382114,"pw3Count":1},
+            {"mods":42,"watts":17010,"basePPW":1.368489,"pw3Count":1},
+            {"mods":43,"watts":17415,"basePPW":1.357336,"pw3Count":1},
+            {"mods":44,"watts":17820,"basePPW":1.344893,"pw3Count":1},
+            {"mods":45,"watts":18225,"basePPW":1.771797,"pw3Count":2},
+            {"mods":46,"watts":18630,"basePPW":1.750886,"pw3Count":2},
+            {"mods":47,"watts":19035,"basePPW":1.732545,"pw3Count":2},
+            {"mods":48,"watts":19440,"basePPW":1.713323,"pw3Count":2},
+            {"mods":49,"watts":19845,"basePPW":1.696498,"pw3Count":2},
+            {"mods":50,"watts":20250,"basePPW":1.678765,"pw3Count":2},
+            {"mods":51,"watts":20655,"basePPW":1.663278,"pw3Count":2},
+            {"mods":52,"watts":21060,"basePPW":1.646866,"pw3Count":2},
+            {"mods":53,"watts":21465,"basePPW":1.632565,"pw3Count":2},
+            {"mods":54,"watts":21870,"basePPW":1.61733,"pw3Count":2},
+            {"mods":55,"watts":22275,"basePPW":1.604085,"pw3Count":2},
+            {"mods":56,"watts":22680,"basePPW":1.589903,"pw3Count":2},
+            {"mods":57,"watts":23085,"basePPW":1.577605,"pw3Count":2},
+            {"mods":58,"watts":23490,"basePPW":1.564368,"pw3Count":2},
+            {"mods":59,"watts":23895,"basePPW":1.552919,"pw3Count":2},
+            {"mods":60,"watts":24300,"basePPW":1.540535,"pw3Count":2},
+            {"mods":61,"watts":24705,"basePPW":1.529852,"pw3Count":2},
+            {"mods":62,"watts":25110,"basePPW":1.51824,"pw3Count":2},
+            {"mods":63,"watts":25515,"basePPW":1.50825,"pw3Count":2},
+            {"mods":64,"watts":25920,"basePPW":1.497338,"pw3Count":2},
+            {"mods":65,"watts":26325,"basePPW":1.487977,"pw3Count":2},
+            {"mods":66,"watts":26730,"basePPW":1.477703,"pw3Count":2},
+            {"mods":67,"watts":27135,"basePPW":1.468915,"pw3Count":2},
+            {"mods":68,"watts":27540,"basePPW":1.459223,"pw3Count":2},
+            {"mods":69,"watts":27945,"basePPW":1.450957,"pw3Count":2},
+            {"mods":70,"watts":28350,"basePPW":1.441799,"pw3Count":2},
+            {"mods":71,"watts":28755,"basePPW":1.434011,"pw3Count":2},
+            {"mods":72,"watts":29160,"basePPW":1.425343,"pw3Count":2},
+            {"mods":73,"watts":29565,"basePPW":1.417994,"pw3Count":2},
+            {"mods":74,"watts":29970,"basePPW":1.409776,"pw3Count":2},
+            {"mods":75,"watts":30375,"basePPW":1.402831,"pw3Count":2}
+        ];
 
         function getPricing(mods) {
             return pricingMatrix.find(entry => entry.mods === mods) || null;
@@ -254,11 +316,10 @@
 
         function calculate() {
             const salesPrice = parseFloat(document.getElementById('salesPrice').value);
-            const redline = parseFloat(document.getElementById('redline').value);
             const mods = parseInt(document.getElementById('mods').value, 10);
             const expansionQty = parseInt(document.getElementById('expansionQty').value, 10) || 0;
 
-            if ([salesPrice, redline, mods].some(v => Number.isNaN(v))) {
+            if ([salesPrice, mods].some(v => Number.isNaN(v))) {
                 alert('Please enter valid numbers for all inputs.');
                 return;
             }
@@ -271,17 +332,16 @@
             }
 
             const systemSize = pricing.watts;
-            const basePPW = pricing.basePPW;
-            const epcPPW = redline;
-            const epcAmount = epcPPW * systemSize;
+            const matrixPPW = pricing.basePPW;
+            const equipmentCost = matrixPPW * systemSize;
             const expansionCost = expansionQty * 10000;
-            const totalCommission = ((salesPrice - epcPPW) * systemSize) - expansionCost;
+            const totalCommission = ((salesPrice - matrixPPW) * systemSize) - expansionCost;
 
             document.getElementById('systemSize').textContent = systemSize.toLocaleString();
             document.getElementById('pw3Count').textContent = pricing.pw3Count.toLocaleString();
-            document.getElementById('basePPW').textContent = basePPW.toFixed(4);
-            document.getElementById('epcPPW').textContent = epcPPW.toFixed(4);
-            document.getElementById('epcAmount').textContent = formatCurrency(epcAmount);
+            document.getElementById('matrixPPW').textContent = matrixPPW.toFixed(4);
+            document.getElementById('equipmentCost').textContent = formatCurrency(equipmentCost);
+            document.getElementById('expansionCost').textContent = formatCurrency(expansionCost);
             document.getElementById('totalCommission').textContent = formatCurrency(totalCommission);
             document.getElementById('output').classList.add('show');
         }
