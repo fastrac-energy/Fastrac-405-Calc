@@ -137,7 +137,7 @@
           <input id="panelCount" type="number" min="10" max="75" step="1" value="24" />
         </div>
         <div class="field">
-          <label for="pw3Count">Batteries (PW3)</label>
+          <label for="pw3Count">Powerwalls (PW3)</label>
           <div class="select-wrap">
             <select id="pw3Count">
               <option value="1">1 PW3</option>
@@ -147,15 +147,13 @@
           </div>
         </div>
       </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="contractPrice">Gross contract amount</label>
-          <input id="contractPrice" type="number" min="0" step="1" value="47853" />
-        </div>
-        <div class="field">
-          <label for="redlinePpw">Redline PPW</label>
-          <input id="redlinePpw" type="number" min="0" step="0.0001" value="3.25" />
-        </div>
+      <div class="field">
+        <label for="baseEpc">Base EPC ($/W)</label>
+        <input id="baseEpc" type="number" min="0" step="0.01" value="1.50" />
+      </div>
+      <div class="field">
+        <label for="contractPrice">Gross contract amount</label>
+        <input id="contractPrice" type="number" min="0" step="1" value="47853" />
       </div>
 
 
@@ -184,14 +182,7 @@
           <div class="m-value" id="commissionPpw">—</div>
         </div>
       </div>
-      <div class="margin-bar-wrap">
-        <div class="margin-bar-label">
-          Margin over redline <span id="redlineMarginLabel">—</span>
-        </div>
-        <div class="bar-track">
-          <div class="bar-fill" id="marginBar" style="width:0%"></div>
-        </div>
-      </div>
+
     </div>
   </div>
 
@@ -207,10 +198,10 @@
         GATEWAY=900, PW3_PRICE=8000, EXP_PACK=10500, RACK_PW=0.15, COST_FLOOR=15000;
 
   function calculate() {
-    const panels        = Math.max(1, Number($('panelCount').value)  || 1);
+    const panels        = Math.max(1, Number($('panelCount').value)    || 1);
     const pw3Count      = Number($('pw3Count').value);
+    const baseEpc       = Math.max(0, Number($('baseEpc').value)       || 0);
     const contractPrice = Math.max(0, Number($('contractPrice').value) || 0);
-    const redlinePpw    = Math.max(0, Number($('redlinePpw').value)    || 0);
 
     const systemWatts = panels * PANEL_W;
     const baseSum     = (panels * MOD_PRICE) + (Math.ceil(panels/2) * MCI_PRICE) + GATEWAY + PW3_PRICE + (systemWatts * RACK_PW);
@@ -219,23 +210,17 @@
                         : pw3Count===2 ? baseSum + EXP_PACK
                         :               baseSum + 2*EXP_PACK;
 
-    const pulseEpc          = (equipmentCost / systemWatts) + BASE_EPC;
+    const pulseEpc          = (equipmentCost / systemWatts) + baseEpc;
     const commissionDollars = contractPrice - (pulseEpc * systemWatts);
     const commissionPpw     = (contractPrice / systemWatts) - pulseEpc;
-    const redlineMargin     = contractPrice - (redlinePpw * systemWatts);
 
     $('commissionDollars').textContent = fmt$c.format(commissionDollars);
     $('commissionDollars').className   = 'm-value ' + (commissionDollars >= 0 ? 'positive' : 'negative');
     $('commissionPpw').textContent     = r4(commissionPpw);
     $('commissionPpw').className       = 'm-value ' + (commissionPpw >= 0 ? 'positive' : 'negative');
-
-    const marginPct = contractPrice > 0 ? Math.max(0, Math.min(100, (redlineMargin / contractPrice) * 300)) : 0;
-    $('marginBar').style.width         = marginPct + '%';
-    $('redlineMarginLabel').textContent = fmt$c.format(redlineMargin);
-    $('redlineMarginLabel').style.color = redlineMargin >= 0 ? 'var(--green)' : 'var(--red)';
   }
 
-  ['panelCount','pw3Count','contractPrice','redlinePpw'].forEach(id => {
+  ['panelCount','pw3Count','baseEpc','contractPrice'].forEach(id => {
     $(id).addEventListener('input', calculate);
     $(id).addEventListener('change', calculate);
   });
