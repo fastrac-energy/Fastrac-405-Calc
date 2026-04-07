@@ -8,19 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:        #0a0b0d;
-      --surface:   #111318;
-      --surface2:  #191c24;
-      --surface3:  #20242f;
-      --orange:    #f26522;
-      --orange-dim:#c04e14;
+      --bg:          #0a0b0d;
+      --surface:     #111318;
+      --surface2:    #191c24;
+      --surface3:    #20242f;
+      --orange:      #f26522;
+      --orange-dim:  #c04e14;
       --orange-glow: rgba(242,101,34,0.18);
-      --text:      #f0f2f8;
-      --muted:     #7a8099;
-      --border:    rgba(255,255,255,0.08);
-      --border-hi: rgba(242,101,34,0.4);
-      --green:     #34d399;
-      --red:       #f87171;
+      --text:        #f0f2f8;
+      --muted:       #7a8099;
+      --border:      rgba(255,255,255,0.08);
+      --border-hi:   rgba(242,101,34,0.4);
+      --green:       #34d399;
+      --red:         #f87171;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,398 +30,74 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    /* ─── HEADER ─────────────────────────────────── */
     header {
       border-bottom: 1px solid var(--border);
-      background: rgba(10,11,13,0.9);
+      background: rgba(10,11,13,0.95);
       backdrop-filter: blur(16px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0 32px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 32px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      background: var(--orange);
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-    }
-
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--orange); border-radius: 8px; display: grid; place-items: center; }
     .logo-mark svg { width: 18px; height: 18px; fill: white; }
-
-    .logo-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
+    .logo-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
     .logo-name span { color: var(--orange); }
+    .badge { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border-hi); border-radius: 999px; color: var(--orange); background: var(--orange-glow); }
 
-    .badge {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border: 1px solid var(--border-hi);
-      border-radius: 999px;
-      color: var(--orange);
-      background: var(--orange-glow);
-    }
+    .page { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; display: flex; flex-direction: column; gap: 20px; }
 
-    /* ─── MAIN LAYOUT ─────────────────────────────── */
-    .page {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
+    .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); }
+    h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 6vw, 52px); font-weight: 800; letter-spacing: -0.01em; line-height: 1; text-transform: uppercase; margin-bottom: 10px; }
+    h1 em { font-style: normal; color: var(--orange); }
+    .hero-sub { color: var(--muted); font-size: 15px; line-height: 1.6; }
 
-    .hero {
-      margin-bottom: 36px;
-    }
-
-    .eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .eyebrow::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--orange);
-    }
-
-    h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      line-height: 1;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    h1 em {
-      font-style: normal;
-      color: var(--orange);
-    }
-
-    .hero-sub {
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 600px;
-      line-height: 1.65;
-    }
-
-    /* ─── GRID ────────────────────────────────────── */
-    .layout {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    /* ─── PANELS ──────────────────────────────────── */
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .panel-head {
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .panel-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--orange-glow);
-      border: 1px solid var(--border-hi);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+    .panel-head { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+    .panel-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--orange-glow); border: 1px solid var(--border-hi); display: grid; place-items: center; flex-shrink: 0; }
     .panel-icon svg { width: 18px; height: 18px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-    .panel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
+    .panel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
     .panel-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
     .panel-body { padding: 24px; }
 
-    /* ─── FIELDS ──────────────────────────────────── */
-    .field { margin-bottom: 18px; }
+    .field { margin-bottom: 16px; }
     .field:last-child { margin-bottom: 0; }
-
-    label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    input, select {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 13px 16px;
-      font-size: 16px;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    input:focus, select:focus {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 3px var(--orange-glow);
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
+    label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    input, select { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 13px 16px; font-size: 16px; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: border-color 0.15s, box-shadow 0.15s; appearance: none; -webkit-appearance: none; }
+    input:focus, select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-glow); }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .select-wrap { position: relative; }
     .select-wrap select { padding-right: 36px; cursor: pointer; }
-    .select-wrap::after {
-      content: '';
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 5px solid var(--muted);
-      pointer-events: none;
-    }
+    .select-wrap::after { content: ''; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid var(--muted); pointer-events: none; }
 
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 20px 0;
-    }
-
-    .locked-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .locked-label svg { width: 12px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; }
-
-    .assumptions-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .assum {
-      background: var(--surface3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-
+    .divider { height: 1px; background: var(--border); margin: 18px 0; }
+    .locked-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .locked-label svg { width: 12px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 2; }
+    .assumptions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .assum { background: var(--surface3); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
     .assum-k { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-    .assum-v { font-size: 14px; font-weight: 600; color: var(--text); }
+    .assum-v { font-size: 13px; font-weight: 600; }
 
-    /* ─── RESULTS ─────────────────────────────────── */
-    .result-hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .metric-big {
-      background: linear-gradient(135deg, rgba(242,101,34,0.15), rgba(242,101,34,0.06));
-      border: 1px solid var(--border-hi);
-      border-radius: 16px;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .metric-big::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--orange);
-    }
-
-    .metric-big .m-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
-    .metric-big .m-value { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(28px, 5vw, 38px); font-weight: 800; letter-spacing: -0.01em; color: var(--text); }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .metric-sm {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    .metric-sm .m-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .metric-sm .m-value { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
-
+    .output-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .metric-big { background: linear-gradient(135deg, rgba(242,101,34,0.15), rgba(242,101,34,0.05)); border: 1px solid var(--border-hi); border-radius: 16px; padding: 22px 20px; position: relative; overflow: hidden; }
+    .metric-big::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--orange); }
+    .m-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+    .m-value { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(30px, 5vw, 42px); font-weight: 800; letter-spacing: -0.01em; }
     .positive { color: var(--green); }
     .negative { color: var(--red); }
 
-    /* ─── TABLE ───────────────────────────────────── */
-    .breakdown {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-
-    .breakdown table { width: 100%; border-collapse: collapse; }
-    .breakdown th {
-      padding: 10px 14px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-    }
-    .breakdown td {
-      padding: 10px 14px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border);
-    }
-    .breakdown tr:last-child td { border-bottom: none; }
-    .breakdown td:last-child, .breakdown th:last-child { text-align: right; font-weight: 600; }
-    .breakdown td:nth-child(2) { color: var(--muted); font-size: 12px; }
-    .breakdown tr.summary-row td { background: var(--surface3); font-weight: 600; }
-    .breakdown tr.commission-row td { background: rgba(242,101,34,0.08); font-weight: 700; }
-    .breakdown tr.commission-row td:last-child { color: var(--orange); }
-
-    /* ─── NOTE ────────────────────────────────────── */
-    .note {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .note-icon {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      stroke: var(--muted);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      margin-top: 1px;
-    }
-
-    /* ─── MARGIN INDICATOR ────────────────────────── */
-    .margin-bar-wrap {
-      margin-bottom: 16px;
-    }
-
-    .margin-bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .margin-bar-label span { color: var(--text); }
-
-    .bar-track {
-      height: 8px;
-      background: var(--surface3);
-      border-radius: 99px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--orange-dim), var(--orange));
-      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-      min-width: 2px;
-    }
-
-    @media (max-width: 960px) {
-      .layout { grid-template-columns: 1fr; }
-      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    .margin-bar-wrap { margin-top: 16px; }
+    .margin-bar-label { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .margin-bar-label span { font-size: 13px; }
+    .bar-track { height: 8px; background: var(--surface3); border-radius: 99px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--orange-dim), var(--orange)); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
     @media (max-width: 500px) {
-      .result-hero { grid-template-columns: 1fr; }
-      .metrics-grid { grid-template-columns: 1fr 1fr; }
-      .field-row { grid-template-columns: 1fr; }
+      .output-grid, .field-row { grid-template-columns: 1fr; }
+      .assumptions-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -429,9 +105,7 @@
 
 <header>
   <div class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 20 20"><path d="M10 2L3 7v11h5v-5h4v5h5V7L10 2z"/></svg>
-    </div>
+    <div class="logo-mark"><svg viewBox="0 0 20 20"><path d="M10 2L3 7v11h5v-5h4v5h5V7L10 2z"/></svg></div>
     <div class="logo-name">Fast<span>rac</span></div>
   </div>
   <span class="badge">LightReach · Pulse Matrix v6</span>
@@ -439,306 +113,141 @@
 
 <div class="page">
 
-  <div class="hero">
+  <div>
     <div class="eyebrow">Commission Tool</div>
-    <h1>LightReach<br><em>Commission</em> Calculator</h1>
-    <p class="hero-sub">Locked to the Pulse pricing matrix. Enter panel count, battery count, and contract amount — everything else is calculated automatically.</p>
+    <h1>LightReach <em>Commission</em> Calculator</h1>
+    <p class="hero-sub">Locked to the Pulse pricing matrix. Enter your deal details to instantly calculate commission.</p>
   </div>
 
-  <div class="layout">
-
-    <!-- LEFT: Inputs -->
-    <div class="panel">
-      <div class="panel-head">
-        <div class="panel-icon">
-          <svg viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+  <!-- INPUTS -->
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-icon">
+        <svg viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </div>
+      <div>
+        <div class="panel-title">Deal Inputs</div>
+        <div class="panel-sub">Enter your deal details below</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="field-row">
+        <div class="field">
+          <label for="panelCount">Panel count</label>
+          <input id="panelCount" type="number" min="10" max="75" step="1" value="24" />
         </div>
-        <div>
-          <div class="panel-title">Deal Inputs</div>
-          <div class="panel-sub">Enter your deal details below</div>
+        <div class="field">
+          <label for="pw3Count">Batteries (PW3)</label>
+          <div class="select-wrap">
+            <select id="pw3Count">
+              <option value="1">1 PW3</option>
+              <option value="2">2 PW3</option>
+              <option value="3">3 PW3</option>
+            </select>
+          </div>
         </div>
       </div>
-      <div class="panel-body">
-
-        <div class="field-row">
-          <div class="field">
-            <label for="panelCount">Panel count</label>
-            <input id="panelCount" type="number" min="10" max="75" step="1" value="24" />
-          </div>
-          <div class="field">
-            <label for="pw3Count">Batteries (PW3)</label>
-            <div class="select-wrap">
-              <select id="pw3Count">
-                <option value="1">1 PW3</option>
-                <option value="2">2 PW3</option>
-                <option value="3">3 PW3</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
+      <div class="field-row">
         <div class="field">
           <label for="contractPrice">Gross contract amount</label>
           <input id="contractPrice" type="number" min="0" step="1" value="47853" />
         </div>
-
         <div class="field">
           <label for="redlinePpw">Redline PPW</label>
           <input id="redlinePpw" type="number" min="0" step="0.0001" value="3.25" />
         </div>
+      </div>
 
-        <div class="divider"></div>
+      <div class="divider"></div>
 
-        <div class="locked-label">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Locked Matrix Assumptions
-        </div>
-
-        <div class="assumptions-grid">
-          <div class="assum"><div class="assum-k">Base EPC</div><div class="assum-v">$1.50/W</div></div>
-          <div class="assum"><div class="assum-k">Panel watts</div><div class="assum-v">400 W</div></div>
-          <div class="assum"><div class="assum-k">Module price</div><div class="assum-v">$255 ea</div></div>
-          <div class="assum"><div class="assum-k">MCI / RSD</div><div class="assum-v">$35 ea</div></div>
-          <div class="assum"><div class="assum-k">Gateway</div><div class="assum-v">$900</div></div>
-          <div class="assum"><div class="assum-k">PW3 base</div><div class="assum-v">$8,000</div></div>
-          <div class="assum"><div class="assum-k">Expansion pack</div><div class="assum-v">$10,500</div></div>
-          <div class="assum"><div class="assum-k">Racking</div><div class="assum-v">$0.15/W</div></div>
-          <div class="assum"><div class="assum-k">Cost floor</div><div class="assum-v">$15,000</div></div>
-          <div class="assum"><div class="assum-k">Holdback</div><div class="assum-v">40%</div></div>
-        </div>
-
+      <div class="locked-label">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Locked Matrix Assumptions
+      </div>
+      <div class="assumptions-grid">
+        <div class="assum"><div class="assum-k">Base EPC</div><div class="assum-v">$1.50/W</div></div>
+        <div class="assum"><div class="assum-k">Panel watts</div><div class="assum-v">400 W</div></div>
+        <div class="assum"><div class="assum-k">Module</div><div class="assum-v">$255 ea</div></div>
+        <div class="assum"><div class="assum-k">MCI / RSD</div><div class="assum-v">$35 ea</div></div>
+        <div class="assum"><div class="assum-k">Gateway</div><div class="assum-v">$900</div></div>
+        <div class="assum"><div class="assum-k">PW3 base</div><div class="assum-v">$8,000</div></div>
+        <div class="assum"><div class="assum-k">Exp. pack</div><div class="assum-v">$10,500</div></div>
+        <div class="assum"><div class="assum-k">Cost floor</div><div class="assum-v">$15,000</div></div>
       </div>
     </div>
-
-    <!-- RIGHT: Outputs -->
-    <div class="panel">
-      <div class="panel-head">
-        <div class="panel-icon">
-          <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-        </div>
-        <div>
-          <div class="panel-title">Commission Output</div>
-          <div class="panel-sub">Live calculation from locked matrix</div>
-        </div>
-      </div>
-      <div class="panel-body">
-
-        <!-- Big numbers -->
-        <div class="result-hero">
-          <div class="metric-big">
-            <div class="m-label">Commission $</div>
-            <div class="m-value" id="commissionDollars">—</div>
-          </div>
-          <div class="metric-big">
-            <div class="m-label">Commission PPW</div>
-            <div class="m-value" id="commissionPpw">—</div>
-          </div>
-        </div>
-
-        <!-- Margin bar -->
-        <div class="margin-bar-wrap">
-          <div class="margin-bar-label">
-            Margin over redline &nbsp;<span id="redlineMarginLabel">—</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill" id="marginBar" style="width:0%"></div>
-          </div>
-        </div>
-
-        <!-- Secondary metrics -->
-        <div class="metrics-grid">
-          <div class="metric-sm">
-            <div class="m-label">System Watts</div>
-            <div class="m-value" id="systemWatts">—</div>
-          </div>
-          <div class="metric-sm">
-            <div class="m-label">Contract PPW</div>
-            <div class="m-value" id="contractPpw">—</div>
-          </div>
-          <div class="metric-sm">
-            <div class="m-label">Pulse EPC</div>
-            <div class="m-value" id="pulseEpc">—</div>
-          </div>
-          <div class="metric-sm">
-            <div class="m-label">Material $/W</div>
-            <div class="m-value" id="materialPpw">—</div>
-          </div>
-          <div class="metric-sm">
-            <div class="m-label">Pulse Total</div>
-            <div class="m-value" id="pulseTotal">—</div>
-          </div>
-          <div class="metric-sm">
-            <div class="m-label">Equipment Cost</div>
-            <div class="m-value" id="equipmentCost">—</div>
-          </div>
-          <div class="metric-sm">
-            <div class="m-label">Redline Total</div>
-            <div class="m-value" id="redlineTotal">—</div>
-          </div>
-          <div class="metric-sm">
-            <div class="m-label">Redline Margin</div>
-            <div class="m-value" id="redlineMargin">—</div>
-          </div>
-        </div>
-
-        <!-- Breakdown table -->
-        <div class="breakdown">
-          <table>
-            <thead>
-              <tr>
-                <th>Component</th>
-                <th>Formula</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody id="breakdownBody"></tbody>
-          </table>
-        </div>
-
-        <!-- Note -->
-        <div class="note">
-          <svg class="note-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <span id="noteText">MCI/RSD = CEILING(panels ÷ 2) × $35. Cost floor of $15,000 applies to 1-PW3 systems. 2 PW3 adds one Expansion Pack ($10,500); 3 PW3 adds two. Commission = Contract Price − Pulse Total.</span>
-        </div>
-
-      </div>
-    </div>
-
   </div>
+
+  <!-- OUTPUT -->
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      </div>
+      <div>
+        <div class="panel-title">Commission Output</div>
+        <div class="panel-sub">Live calculation from locked matrix</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="output-grid">
+        <div class="metric-big">
+          <div class="m-label">Commission $</div>
+          <div class="m-value" id="commissionDollars">—</div>
+        </div>
+        <div class="metric-big">
+          <div class="m-label">Commission PPW</div>
+          <div class="m-value" id="commissionPpw">—</div>
+        </div>
+      </div>
+      <div class="margin-bar-wrap">
+        <div class="margin-bar-label">
+          Margin over redline <span id="redlineMarginLabel">—</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="marginBar" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
   const $ = id => document.getElementById(id);
-
-  const fmt$ = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-  const fmt$c = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fmtN = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+  const fmt$c = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2 });
+  const fmt$  = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', maximumFractionDigits:0 });
   const r4 = n => n.toFixed(4);
-  const r2 = n => n.toFixed(2);
 
-  // ── Locked matrix constants ──────────────────────
-  const PANEL_W    = 400;
-  const BASE_EPC   = 1.50;
-  const MOD_PRICE  = 255;
-  const MCI_PRICE  = 35;
-  const GATEWAY    = 900;
-  const PW3_PRICE  = 8000;
-  const EXP_PACK   = 10500;
-  const RACK_PW    = 0.15;
-  const COST_FLOOR = 15000;
+  const PANEL_W=400, BASE_EPC=1.5, MOD_PRICE=255, MCI_PRICE=35,
+        GATEWAY=900, PW3_PRICE=8000, EXP_PACK=10500, RACK_PW=0.15, COST_FLOOR=15000;
 
   function calculate() {
-    const panels       = Math.max(1, Number($('panelCount').value) || 0);
-    const pw3Count     = Number($('pw3Count').value);
-    const contractPrice= Math.max(0, Number($('contractPrice').value) || 0);
-    const redlinePpw   = Math.max(0, Number($('redlinePpw').value) || 0);
+    const panels        = Math.max(1, Number($('panelCount').value)  || 1);
+    const pw3Count      = Number($('pw3Count').value);
+    const contractPrice = Math.max(0, Number($('contractPrice').value) || 0);
+    const redlinePpw    = Math.max(0, Number($('redlinePpw').value)    || 0);
 
-    // System
-    const systemWatts  = panels * PANEL_W;
+    const systemWatts = panels * PANEL_W;
+    const baseSum     = (panels * MOD_PRICE) + (Math.ceil(panels/2) * MCI_PRICE) + GATEWAY + PW3_PRICE + (systemWatts * RACK_PW);
 
-    // Equipment cost
-    const modsCost     = panels * MOD_PRICE;
-    const mciUnits     = Math.ceil(panels / 2);
-    const mciCost      = mciUnits * MCI_PRICE;
-    const gatewayCost  = GATEWAY;
-    const pw3Cost      = PW3_PRICE;
-    const rackingCost  = systemWatts * RACK_PW;
-    const baseSum      = modsCost + mciCost + gatewayCost + pw3Cost + rackingCost;
+    const equipmentCost = pw3Count===1 ? Math.max(baseSum, COST_FLOOR)
+                        : pw3Count===2 ? baseSum + EXP_PACK
+                        :               baseSum + 2*EXP_PACK;
 
-    let equipmentCost;
-    let batteryNote;
-    if (pw3Count === 1) {
-      equipmentCost = Math.max(baseSum, COST_FLOOR);
-      batteryNote = '1 PW3 — MAX(component total, $15,000 floor)';
-    } else if (pw3Count === 2) {
-      equipmentCost = baseSum + EXP_PACK;
-      batteryNote = '2 PW3 — component total + 1 Expansion Pack';
-    } else {
-      equipmentCost = baseSum + 2 * EXP_PACK;
-      batteryNote = '3 PW3 — component total + 2 Expansion Packs';
-    }
+    const pulseEpc          = (equipmentCost / systemWatts) + BASE_EPC;
+    const commissionDollars = contractPrice - (pulseEpc * systemWatts);
+    const commissionPpw     = (contractPrice / systemWatts) - pulseEpc;
+    const redlineMargin     = contractPrice - (redlinePpw * systemWatts);
 
-    // Pricing chain
-    const materialPpw  = systemWatts > 0 ? equipmentCost / systemWatts : 0;
-    const pulseEpc     = materialPpw + BASE_EPC;
-    const pulseTotal   = pulseEpc * systemWatts;
-    const contractPpw  = systemWatts > 0 ? contractPrice / systemWatts : 0;
-    const commissionPpw= contractPpw - pulseEpc;
-    const commissionDollars = contractPrice - pulseTotal;
-    const redlineTotal = redlinePpw * systemWatts;
-    const redlineMargin= contractPrice - redlineTotal;
-
-    // ── Update hero ──────────────────────────────
     $('commissionDollars').textContent = fmt$c.format(commissionDollars);
     $('commissionDollars').className   = 'm-value ' + (commissionDollars >= 0 ? 'positive' : 'negative');
     $('commissionPpw').textContent     = r4(commissionPpw);
     $('commissionPpw').className       = 'm-value ' + (commissionPpw >= 0 ? 'positive' : 'negative');
 
-    // ── Margin bar ──────────────────────────────
-    const marginPct = redlineTotal > 0 ? Math.max(0, Math.min(100, (redlineMargin / contractPrice) * 100 * 3)) : 0;
-    $('marginBar').style.width = marginPct + '%';
+    const marginPct = contractPrice > 0 ? Math.max(0, Math.min(100, (redlineMargin / contractPrice) * 300)) : 0;
+    $('marginBar').style.width         = marginPct + '%';
     $('redlineMarginLabel').textContent = fmt$c.format(redlineMargin);
     $('redlineMarginLabel').style.color = redlineMargin >= 0 ? 'var(--green)' : 'var(--red)';
-
-    // ── Secondary metrics ────────────────────────
-    $('systemWatts').textContent  = fmtN.format(systemWatts) + ' W';
-    $('contractPpw').textContent  = r4(contractPpw);
-    $('pulseEpc').textContent     = r4(pulseEpc);
-    $('materialPpw').textContent  = r4(materialPpw);
-    $('pulseTotal').textContent   = fmt$.format(pulseTotal);
-    $('equipmentCost').textContent= fmt$.format(equipmentCost);
-    $('redlineTotal').textContent = fmt$.format(redlineTotal);
-    $('redlineMargin').textContent= fmt$.format(redlineMargin);
-
-    // ── Breakdown table ──────────────────────────
-    const rows = [
-      ['Modules',       `${panels} × $${MOD_PRICE}`,                           modsCost],
-      ['MCI / RSD',     `⌈${panels} ÷ 2⌉ = ${mciUnits} × $${MCI_PRICE}`,     mciCost],
-      ['Gateway',       'Fixed',                                                  gatewayCost],
-      ['PW3 (base)',    'Fixed — 1st battery',                                    pw3Cost],
-      ['Racking',       `${fmtN.format(systemWatts)} W × $${RACK_PW}/W`,        rackingCost],
-    ];
-
-    if (pw3Count === 1 && baseSum < COST_FLOOR) {
-      rows.push(['Cost floor applied', `MAX($${fmtN.format(baseSum)}, $15,000)`, COST_FLOOR]);
-    }
-    if (pw3Count === 2) rows.push(['Expansion pack', '1 × $10,500', EXP_PACK]);
-    if (pw3Count === 3) rows.push(['Expansion packs', '2 × $10,500', EXP_PACK * 2]);
-
-    const tableHTML = rows.map(([n, f, a]) => `
-      <tr>
-        <td>${n}</td>
-        <td>${f}</td>
-        <td>${fmt$.format(a)}</td>
-      </tr>
-    `).join('') + `
-      <tr class="summary-row">
-        <td colspan="2">Equipment cost total</td>
-        <td>${fmt$.format(equipmentCost)}</td>
-      </tr>
-      <tr>
-        <td>Material $/W</td>
-        <td>${fmt$.format(equipmentCost)} ÷ ${fmtN.format(systemWatts)} W</td>
-        <td>${r4(materialPpw)}</td>
-      </tr>
-      <tr>
-        <td>Pulse EPC</td>
-        <td>${r4(materialPpw)} + $${BASE_EPC} base</td>
-        <td>${r4(pulseEpc)}</td>
-      </tr>
-      <tr class="summary-row">
-        <td colspan="2">Pulse total</td>
-        <td>${fmt$.format(pulseTotal)}</td>
-      </tr>
-      <tr class="commission-row">
-        <td><strong>Commission</strong></td>
-        <td>${fmt$.format(contractPrice)} − ${fmt$.format(pulseTotal)}</td>
-        <td>${fmt$c.format(commissionDollars)}</td>
-      </tr>
-    `;
-
-    $('breakdownBody').innerHTML = tableHTML;
-    $('noteText').textContent = batteryNote + '. Commission PPW = Contract PPW (' + r4(contractPpw) + ') − Pulse EPC (' + r4(pulseEpc) + ') = ' + r4(commissionPpw) + '/W.';
   }
 
   ['panelCount','pw3Count','contractPrice','redlinePpw'].forEach(id => {
