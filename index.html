@@ -47,7 +47,7 @@
     .logo-name span { color: var(--orange); }
     .badge { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border-hi); border-radius: 999px; color: var(--orange); background: var(--orange-glow); }
 
-    .page { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; display: flex; flex-direction: column; gap: 20px; }
+    .page { max-width: 680px; margin: 0 auto; padding: 40px 24px 80px; display: flex; flex-direction: column; gap: 20px; }
 
     .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
     .eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); }
@@ -66,6 +66,7 @@
     .field { margin-bottom: 16px; }
     .field:last-child { margin-bottom: 0; }
     label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    .label-hint { font-size: 10px; color: var(--muted); opacity: 0.7; font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 6px; }
     input, select { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 13px 16px; font-size: 16px; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: border-color 0.15s, box-shadow 0.15s; appearance: none; -webkit-appearance: none; }
     input:focus, select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-glow); }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -73,14 +74,13 @@
     .select-wrap select { padding-right: 36px; cursor: pointer; }
     .select-wrap::after { content: ''; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid var(--muted); pointer-events: none; }
 
-    .divider { height: 1px; background: var(--border); margin: 18px 0; }
-    .locked-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-    .locked-label svg { width: 12px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 2; }
-    .assumptions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .assum { background: var(--surface3); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
-    .assum-k { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-    .assum-v { font-size: 13px; font-weight: 600; }
+    /* Derived field display */
+    .derived-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .derived { background: var(--surface3); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+    .derived-k { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .derived-v { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); }
 
+    /* Output */
     .output-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .metric-big { background: linear-gradient(135deg, rgba(242,101,34,0.15), rgba(242,101,34,0.05)); border: 1px solid var(--border-hi); border-radius: 16px; padding: 22px 20px; position: relative; overflow: hidden; }
     .metric-big::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--orange); }
@@ -89,15 +89,8 @@
     .positive { color: var(--green); }
     .negative { color: var(--red); }
 
-    .margin-bar-wrap { margin-top: 16px; }
-    .margin-bar-label { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .margin-bar-label span { font-size: 13px; }
-    .bar-track { height: 8px; background: var(--surface3); border-radius: 99px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--orange-dim), var(--orange)); transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-
     @media (max-width: 500px) {
-      .output-grid, .field-row { grid-template-columns: 1fr; }
-      .assumptions-grid { grid-template-columns: repeat(2, 1fr); }
+      .output-grid, .field-row, .derived-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -116,7 +109,7 @@
   <div>
     <div class="eyebrow">Commission Tool</div>
     <h1>LightReach <em>Commission</em> Calculator</h1>
-    <p class="hero-sub">Locked to the Pulse pricing matrix. Enter your deal details to instantly calculate commission.</p>
+    <p class="hero-sub">Enter your deal details below to instantly calculate your commission.</p>
   </div>
 
   <!-- INPUTS -->
@@ -127,13 +120,14 @@
       </div>
       <div>
         <div class="panel-title">Deal Inputs</div>
-        <div class="panel-sub">Enter your deal details below</div>
+        <div class="panel-sub">4 fields — everything else is calculated</div>
       </div>
     </div>
     <div class="panel-body">
+
       <div class="field-row">
         <div class="field">
-          <label for="panelCount">Panel count</label>
+          <label for="panelCount">Panel Count</label>
           <input id="panelCount" type="number" min="10" max="75" step="1" value="24" />
         </div>
         <div class="field">
@@ -147,15 +141,39 @@
           </div>
         </div>
       </div>
-      <div class="field">
-        <label for="baseEpc">Base EPC ($/W)</label>
-        <input id="baseEpc" type="number" min="0" step="0.01" value="1.50" />
-      </div>
-      <div class="field">
-        <label for="contractPrice">Gross contract amount</label>
-        <input id="contractPrice" type="number" min="0" step="1" value="47853" />
+
+      <div class="field-row">
+        <div class="field">
+          <label for="baseEpc">Base EPC <span class="label-hint">$/W</span></label>
+          <input id="baseEpc" type="number" min="0" step="0.01" value="1.50" />
+        </div>
+        <div class="field">
+          <label for="contractPrice">Contract Price</label>
+          <input id="contractPrice" type="number" min="0" step="1" value="47853" />
+        </div>
       </div>
 
+      <!-- Derived fields -->
+      <div class="derived-row">
+        <div class="derived">
+          <span class="derived-k">System Size</span>
+          <span class="derived-v" id="systemSize">—</span>
+        </div>
+        <div class="derived">
+          <span class="derived-k">Material Cost</span>
+          <span class="derived-v" id="materialCost">—</span>
+        </div>
+      </div>
+      <div class="derived-row" style="margin-bottom:0">
+        <div class="derived">
+          <span class="derived-k">Base EPC Cost</span>
+          <span class="derived-v" id="baseEpcCost">—</span>
+        </div>
+        <div class="derived">
+          <span class="derived-k">Total Cost</span>
+          <span class="derived-v" id="totalCost">—</span>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -168,7 +186,7 @@
       </div>
       <div>
         <div class="panel-title">Commission Output</div>
-        <div class="panel-sub">Live calculation from locked matrix</div>
+        <div class="panel-sub">Contract Price − Total Cost</div>
       </div>
     </div>
     <div class="panel-body">
@@ -182,7 +200,6 @@
           <div class="m-value" id="commissionPpw">—</div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -192,10 +209,17 @@
   const $ = id => document.getElementById(id);
   const fmt$c = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2 });
   const fmt$  = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', maximumFractionDigits:0 });
-  const r4 = n => n.toFixed(4);
+  const r4    = n => n.toFixed(4);
 
-  const PANEL_W=400, BASE_EPC=1.5, MOD_PRICE=255, MCI_PRICE=35,
-        GATEWAY=900, PW3_PRICE=8000, EXP_PACK=10500, RACK_PW=0.15, COST_FLOOR=15000;
+  // Locked matrix constants
+  const PANEL_W    = 400;
+  const MOD_PRICE  = 255;
+  const MCI_PRICE  = 35;
+  const GATEWAY    = 900;
+  const PW3_PRICE  = 8000;
+  const EXP_PACK   = 10500;
+  const RACK_PW    = 0.15;
+  const COST_FLOOR = 15000;
 
   function calculate() {
     const panels        = Math.max(1, Number($('panelCount').value)    || 1);
@@ -203,17 +227,37 @@
     const baseEpc       = Math.max(0, Number($('baseEpc').value)       || 0);
     const contractPrice = Math.max(0, Number($('contractPrice').value) || 0);
 
+    // System size
     const systemWatts = panels * PANEL_W;
-    const baseSum     = (panels * MOD_PRICE) + (Math.ceil(panels/2) * MCI_PRICE) + GATEWAY + PW3_PRICE + (systemWatts * RACK_PW);
 
-    const equipmentCost = pw3Count===1 ? Math.max(baseSum, COST_FLOOR)
-                        : pw3Count===2 ? baseSum + EXP_PACK
-                        :               baseSum + 2*EXP_PACK;
+    // Material cost — lookup by panel count (equipment cost from matrix)
+    const baseSum = (panels * MOD_PRICE)
+                  + (Math.ceil(panels / 2) * MCI_PRICE)
+                  + GATEWAY
+                  + PW3_PRICE
+                  + (systemWatts * RACK_PW);
 
-    const pulseEpc          = (equipmentCost / systemWatts) + baseEpc;
-    const commissionDollars = contractPrice - (pulseEpc * systemWatts);
-    const commissionPpw     = (contractPrice / systemWatts) - pulseEpc;
+    const materialCost = pw3Count === 1 ? Math.max(baseSum, COST_FLOOR)
+                       : pw3Count === 2 ? baseSum + EXP_PACK
+                       :                  baseSum + 2 * EXP_PACK;
 
+    // Base EPC cost = Base EPC × System Size
+    const baseEpcCost = baseEpc * systemWatts;
+
+    // Total cost = Material Cost + Base EPC Cost
+    const totalCost = materialCost + baseEpcCost;
+
+    // Commission
+    const commissionDollars = contractPrice - totalCost;
+    const commissionPpw     = systemWatts > 0 ? commissionDollars / systemWatts : 0;
+
+    // Update derived fields
+    $('systemSize').textContent   = (systemWatts / 1000).toFixed(2) + ' kW';
+    $('materialCost').textContent = fmt$.format(materialCost);
+    $('baseEpcCost').textContent  = fmt$.format(baseEpcCost);
+    $('totalCost').textContent    = fmt$.format(totalCost);
+
+    // Update commission output
     $('commissionDollars').textContent = fmt$c.format(commissionDollars);
     $('commissionDollars').className   = 'm-value ' + (commissionDollars >= 0 ? 'positive' : 'negative');
     $('commissionPpw').textContent     = r4(commissionPpw);
