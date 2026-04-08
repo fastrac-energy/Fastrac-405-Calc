@@ -41,10 +41,8 @@
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px; }
 
     label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-
     input, select { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: border-color 0.15s, box-shadow 0.15s; appearance: none; -webkit-appearance: none; }
     input:focus, select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-glow); }
-
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
     .row2:last-child { margin-bottom: 0; }
     .select-wrap { position: relative; }
@@ -65,7 +63,10 @@
     .negative { color: var(--red); }
     .blue { color: var(--blue); }
 
-    .disclaimer { font-size: 11px; color: var(--muted); line-height: 1.5; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255,255,255,0.02); }
+    .disclaimer { font-size: 12px; color: var(--muted); line-height: 1.6; padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255,255,255,0.02); }
+    .disc-title { margin-bottom: 12px; }
+    .instructions { padding-left: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .instructions li strong { color: var(--text); }
 
     @media (max-width: 420px) {
       .out-row, .row2 { grid-template-columns: 1fr; }
@@ -95,72 +96,28 @@
         <label>Panels</label>
         <div class="select-wrap">
           <select id="panelCount">
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24" selected>24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-            <option value="32">32</option>
-            <option value="33">33</option>
-            <option value="34">34</option>
-            <option value="35">35</option>
-            <option value="36">36</option>
-            <option value="37">37</option>
-            <option value="38">38</option>
-            <option value="39">39</option>
-            <option value="40">40</option>
-            <option value="41">41</option>
-            <option value="42">42</option>
-            <option value="43">43</option>
-            <option value="44">44</option>
-            <option value="45">45</option>
-            <option value="46">46</option>
-            <option value="47">47</option>
-            <option value="48">48</option>
-            <option value="49">49</option>
-            <option value="50">50</option>
-            <option value="51">51</option>
-            <option value="52">52</option>
-            <option value="53">53</option>
-            <option value="54">54</option>
-            <option value="55">55</option>
-            <option value="56">56</option>
-            <option value="57">57</option>
-            <option value="58">58</option>
-            <option value="59">59</option>
-            <option value="60">60</option>
-            <option value="61">61</option>
-            <option value="62">62</option>
-            <option value="63">63</option>
-            <option value="64">64</option>
-            <option value="65">65</option>
-            <option value="66">66</option>
-            <option value="67">67</option>
-            <option value="68">68</option>
-            <option value="69">69</option>
-            <option value="70">70</option>
-            <option value="71">71</option>
-            <option value="72">72</option>
-            <option value="73">73</option>
-            <option value="74">74</option>
-            <option value="75">75</option>
+            <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+            <option value="13">13</option><option value="14">14</option><option value="15">15</option>
+            <option value="16">16</option><option value="17">17</option><option value="18">18</option>
+            <option value="19">19</option><option value="20">20</option><option value="21">21</option>
+            <option value="22">22</option><option value="23">23</option><option value="24" selected>24</option>
+            <option value="25">25</option><option value="26">26</option><option value="27">27</option>
+            <option value="28">28</option><option value="29">29</option><option value="30">30</option>
+            <option value="31">31</option><option value="32">32</option><option value="33">33</option>
+            <option value="34">34</option><option value="35">35</option><option value="36">36</option>
+            <option value="37">37</option><option value="38">38</option><option value="39">39</option>
+            <option value="40">40</option><option value="41">41</option><option value="42">42</option>
+            <option value="43">43</option><option value="44">44</option><option value="45">45</option>
+            <option value="46">46</option><option value="47">47</option><option value="48">48</option>
+            <option value="49">49</option><option value="50">50</option><option value="51">51</option>
+            <option value="52">52</option><option value="53">53</option><option value="54">54</option>
+            <option value="55">55</option><option value="56">56</option><option value="57">57</option>
+            <option value="58">58</option><option value="59">59</option><option value="60">60</option>
+            <option value="61">61</option><option value="62">62</option><option value="63">63</option>
+            <option value="64">64</option><option value="65">65</option><option value="66">66</option>
+            <option value="67">67</option><option value="68">68</option><option value="69">69</option>
+            <option value="70">70</option><option value="71">71</option><option value="72">72</option>
+            <option value="73">73</option><option value="74">74</option><option value="75">75</option>
           </select>
         </div>
       </div>
@@ -178,11 +135,11 @@
     <div class="row2">
       <div>
         <label>Base EPC ($/W)</label>
-        <input id="baseEpc" type="number" min="0" step="0.01" value="1.50" />
+        <input id="baseEpc" type="number" min="0" step="0.01" value="1.60" />
       </div>
       <div>
         <label>Contract Price</label>
-        <input id="contractPrice" type="number" min="0" step="1" value="45000" />
+        <input id="contractPrice" type="number" min="0" step="1" value="44600" />
       </div>
     </div>
   </div>
@@ -204,63 +161,77 @@
     <div class="m-hint">Enter in proposal tool</div>
   </div>
 
-  <p class="disclaimer">⚠️ Estimated commission only. Actual commission may vary based on final contract terms, adders, and adjustments.</p>
+  <div class="disclaimer">
+    <p class="disc-title">⚠️ Estimated commission only. Actual amounts may vary based on final contract terms, adders, and adjustments.</p>
+    <ol class="instructions">
+      <li>Enter your <strong>Rep Redline ($/W)</strong> in the Base EPC field — this is your cost floor per watt.</li>
+      <li>Select the <strong>number of panels</strong> on the system design.</li>
+      <li>Select the <strong>number of Powerwalls</strong> included in the deal.</li>
+      <li>The <strong>Redline PPW</strong> will calculate automatically — enter this value as the price per watt in Sunraise to generate the proposal.</li>
+      <li>Once the proposal is built, grab the <strong>total contract price from Sunraise</strong> and enter it in the Contract Price field to see your estimated commission.</li>
+    </ol>
+  </div>
 
 </div>
-
 
 <script>
   const $ = id => document.getElementById(id);
   const fmt$ = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
-  const r4 = n => n.toFixed(2);
+  const r2 = n => n.toFixed(2);
 
-  // Source of truth: ACTIVE PRICING 04072026 CSV
-  // Col H = equipment total (1 PW3) | 2 PW3 = +$10,500 | 3 PW3 = +$21,000
-  const MAT={10:15000,11:15000,12:15000,13:15000,14:15000,15:15000,16:15000,17:15000,18:15000,19:15235,20:15550,21:15900,22:16215,23:16565,24:16880,25:17230,26:17545,27:17895,28:18210,29:18560,30:18875,31:19225,32:19540,33:19890,34:20205,35:20555,36:20870,37:21220,38:21535,39:21885,40:22200,41:22550,42:22865,43:23215,44:23530,45:31880,46:32195,47:32545,48:32860,49:33210,50:33525,51:33875,52:34190,53:34540,54:34855,55:35205,56:35520,57:35870,58:36185,59:36535,60:36850,61:37200,62:37515,63:37865,64:38180,65:38530,66:38845,67:39195,68:39510,69:39860,70:40175,71:40525,72:40840,73:41190,74:41505,75:41855};
-
-  // Col B = total watts
+  // Col B — system watts by panel count
   const WATTS={10:4000,11:4400,12:4800,13:5200,14:5600,15:6000,16:6400,17:6800,18:7200,19:7600,20:8000,21:8400,22:8800,23:9200,24:9600,25:10000,26:10400,27:10800,28:11200,29:11600,30:12000,31:12400,32:12800,33:13200,34:13600,35:14000,36:14400,37:14800,38:15200,39:15600,40:16000,41:16400,42:16800,43:17200,44:17600,45:18000,46:18400,47:18800,48:19200,49:19600,50:20000,51:20400,52:20800,53:21200,54:21600,55:22000,56:22400,57:22800,58:23200,59:23600,60:24000,61:24400,62:24800,63:25200,64:25600,65:26000,66:26400,67:26800,68:27200,69:27600,70:28000,71:28400,72:28800,73:29200,74:29600,75:30000};
 
-  // Redline PPW per PW3 count (cols 16/17/18)
-  const RL1={10:1.5,11:1.5,12:1.5,13:1.5,14:1.5,15:1.5,16:1.5,17:1.5,18:1.5,19:1.53,20:1.57,21:1.61,22:1.64,23:1.67,24:1.7,25:1.72,26:1.74,27:1.77,28:1.79,29:1.81,30:1.82,31:1.84,32:1.85,33:1.87,34:1.88,35:1.9,36:1.91,37:1.92,38:1.93,39:1.94,40:1.95,41:1.96,42:1.97,43:1.98,44:1.98,45:2.44,46:2.43,47:2.43,48:2.43,49:2.43,50:2.43,51:2.43,52:2.42,53:2.42,54:2.42,55:2.42,56:2.42,57:2.42,58:2.41,59:2.41,60:2.41,61:2.41,62:2.41,63:2.41,64:2.41,65:2.41,66:2.4,67:2.4,68:2.4,69:2.4,70:2.4,71:2.4,72:2.4,73:2.4,74:2.4,75:2.4};
-  const RL2={10:3.43,11:3.34,12:3.25,13:3.18,14:3.12,15:3.07,16:3.02,17:2.98,18:1.5,19:1.53,20:1.57,21:1.61,22:1.64,23:1.67,24:1.7,25:1.72,26:1.74,27:1.77,28:1.79,29:1.81,30:1.82,31:1.84,32:1.85,33:1.87,34:1.88,35:1.9,36:1.91,37:1.92,38:1.93,39:1.94,40:1.95,41:1.96,42:1.97,43:1.98,44:1.98,45:2.44,46:2.43,47:2.43,48:2.43,49:2.43,50:2.43,51:2.43,52:2.42,53:2.42,54:2.42,55:2.42,56:2.42,57:2.42,58:2.41,59:2.41,60:2.41,61:2.41,62:2.41,63:2.41,64:2.41,65:2.41,66:2.4,67:2.4,68:2.4,69:2.4,70:2.4,71:2.4,72:2.4,73:2.4,74:2.4,75:2.4};
-  const RL3={10:6.06,11:5.72,12:5.44,13:5.2,14:4.99,15:4.82,16:4.66,17:4.53,18:1.5,19:1.53,20:1.57,21:1.61,22:1.64,23:1.67,24:1.7,25:1.72,26:1.74,27:1.77,28:1.79,29:1.81,30:1.82,31:1.84,32:1.85,33:1.87,34:1.88,35:1.9,36:1.91,37:1.92,38:1.93,39:1.94,40:1.95,41:1.96,42:1.97,43:1.98,44:1.98,45:2.44,46:2.43,47:2.43,48:2.43,49:2.43,50:2.43,51:2.43,52:2.42,53:2.42,54:2.42,55:2.42,56:2.42,57:2.42,58:2.41,59:2.41,60:2.41,61:2.41,62:2.41,63:2.41,64:2.41,65:2.41,66:2.4,67:2.4,68:2.4,69:2.4,70:2.4,71:2.4,72:2.4,73:2.4,74:2.4,75:2.4};
+  // Col 8/9/10 — material $/W by panel count (1PW3 / 2PW3 / 3PW3)
+  // Pulse EPC = COL[panels] + user_base_epc
+  const COL8={10:3.75,11:3.41,12:3.13,13:2.88,14:2.68,15:2.5,16:2.34,17:2.21,18:2.08,19:2.0,20:1.94,21:1.89,22:1.84,23:1.8,24:1.76,25:1.72,26:1.69,27:1.66,28:1.63,29:1.6,30:1.57,31:1.55,32:1.53,33:1.51,34:1.49,35:1.47,36:1.45,37:1.43,38:1.42,39:1.4,40:1.39,41:1.38,42:1.36,43:1.35,44:1.34,45:1.77,46:1.75,47:1.73,48:1.71,49:1.69,50:1.68,51:1.66,52:1.64,53:1.63,54:1.61,55:1.6,56:1.59,57:1.57,58:1.56,59:1.55,60:1.54,61:1.52,62:1.51,63:1.5,64:1.49,65:1.48,66:1.47,67:1.46,68:1.45,69:1.44,70:1.43,71:1.43,72:1.42,73:1.41,74:1.4,75:1.4};
+  const COL9={10:6.38,11:5.8,12:5.31,13:4.9,14:4.55,15:4.25,16:3.98,17:3.75,18:3.54,19:3.39,20:3.26,21:3.14,22:3.04,23:2.94,24:2.85,25:2.77,26:2.7,27:2.63,28:2.56,29:2.51,30:2.45,31:2.4,32:2.35,33:2.3,34:2.26,35:2.22,36:2.18,37:2.14,38:2.11,39:2.08,40:2.04,41:2.02,42:1.99,43:1.96,44:1.93,45:2.35,46:2.32,47:2.29,48:2.26,49:2.23,50:2.2,51:2.18,52:2.15,53:2.12,54:2.1,55:2.08,56:2.05,57:2.03,58:2.01,59:1.99,60:1.97,61:1.95,62:1.94,63:1.92,64:1.9,65:1.89,66:1.87,67:1.85,68:1.84,69:1.82,70:1.81,71:1.8,72:1.78,73:1.77,74:1.76,75:1.75};
+  const COL10={10:9.0,11:8.18,12:7.5,13:6.92,14:6.43,15:6.0,16:5.63,17:5.29,18:5.0,19:4.77,20:4.57,21:4.39,22:4.23,23:4.08,24:3.95,25:3.82,26:3.71,27:3.6,28:3.5,29:3.41,30:3.32,31:3.24,32:3.17,33:3.1,34:3.03,35:2.97,36:2.91,37:2.85,38:2.8,39:2.75,40:2.7,41:2.66,42:2.61,43:2.57,44:2.53,45:2.94,46:2.89,47:2.85,48:2.81,49:2.77,50:2.73,51:2.69,52:2.65,53:2.62,54:2.59,55:2.55,56:2.52,57:2.49,58:2.46,59:2.44,60:2.41,61:2.39,62:2.36,63:2.34,64:2.31,65:2.29,66:2.27,67:2.25,68:2.22,69:2.21,70:2.18,71:2.17,72:2.15,73:2.13,74:2.11,75:2.1};
+
+  // Redline PPW — col 16 from CSV at base_epc=1.60
+  // All PW3 counts use same redline value
+  // Adjusts: redline = RL[panels] + (user_base_epc - 1.60)
+  const RL={10:1.5,11:1.5,12:1.5,13:1.5,14:1.5,15:1.5,16:1.5,17:1.5,18:1.6,19:1.63,20:1.67,21:1.71,22:1.74,23:1.77,24:1.8,25:1.82,26:1.84,27:1.87,28:1.89,29:1.91,30:1.92,31:1.94,32:1.95,33:1.97,34:1.98,35:2.0,36:2.01,37:2.02,38:2.03,39:2.04,40:2.05,41:2.06,42:2.07,43:2.08,44:2.08,45:2.54,46:2.53,47:2.53,48:2.53,49:2.53,50:2.53,51:2.53,52:2.52,53:2.52,54:2.52,55:2.52,56:2.52,57:2.52,58:2.51,59:2.51,60:2.51,61:2.51,62:2.51,63:2.51,64:2.51,65:2.51,66:2.5,67:2.5,68:2.5,69:2.5,70:2.5,71:2.5,72:2.5,73:2.5,74:2.5,75:2.5};
 
   function calculate() {
-    const panels        = Math.round(Number($('panelCount').value) || 0);
+    const panels        = Number($('panelCount').value);
     const pw3           = Number($('pw3Count').value);
-    const baseEpc       = Math.max(0, Number($('baseEpc').value)       || 0);
+    const baseEpc       = Math.max(0, Number($('baseEpc').value) || 0);
     const contractPrice = Math.max(0, Number($('contractPrice').value) || 0);
 
-    if (!MAT[panels]) return;
+    const systemWatts = WATTS[panels];
 
-    const systemWatts  = WATTS[panels];
-    const equipCost    = (pw3===1 ? MAT[panels] : pw3===2 ? MAT[panels]+10500 : MAT[panels]+21000) + 500;
-    const pulsePpw     = (equipCost / systemWatts) + baseEpc;
-    const contractPpw  = contractPrice / systemWatts;
-    const commPpw      = contractPpw - pulsePpw;
-    const commission   = commPpw * systemWatts;
-    const epcAdj       = baseEpc - 1.50;
-    const rlBase       = pw3===1 ? RL1[panels] : pw3===2 ? RL2[panels] : RL3[panels];
-    const redline      = rlBase + epcAdj;
+    // Pulse EPC = material $/W (col 8/9/10) + user base EPC
+    const matPpw   = pw3===1 ? COL8[panels] : pw3===2 ? COL9[panels] : COL10[panels];
+    const pulsePpw = matPpw + baseEpc;
 
+    // Contract PPW = Contract Price / System Watts
+    const contractPpw = contractPrice / systemWatts;
+
+    // Commission PPW = Contract PPW - Pulse EPC
+    const commPpw  = contractPpw - pulsePpw;
+
+    // Commission $ = Commission PPW × System Watts
+    const commission = commPpw * systemWatts;
+
+    // Redline PPW = col 16 from matrix (at base_epc=1.60) + adjustment for user base EPC
+    const redline = RL[panels] + (baseEpc - 1.60);
+
+    $('commissionPpw').textContent     = r2(commPpw);
+    $('commissionPpw').className       = 'm-value ' + (commPpw >= 0 ? 'positive' : 'negative');
     $('commissionDollars').textContent = fmt$.format(commission);
-    $('commissionDollars').className   = 'm-value '+(commission>=0?'positive':'negative');
-    $('commissionPpw').textContent     = r4(commPpw);
-    $('commissionPpw').className       = 'm-value '+(commPpw>=0?'positive':'negative');
-    $('redlinePpw').textContent        = r4(redline);
+    $('commissionDollars').className   = 'm-value ' + (commission >= 0 ? 'positive' : 'negative');
+    $('redlinePpw').textContent        = r2(redline);
   }
 
-  ['panelCount','pw3Count','baseEpc','contractPrice'].forEach(id=>{
-    $(id).addEventListener('input',calculate);
-    $(id).addEventListener('change',calculate);
+  $('panelCount').addEventListener('change', function() {
+    if (Number(this.value) >= 45) $('pw3Count').value = '2';
+    calculate();
   });
 
-  $('panelCount').addEventListener('change', function() {
-    if (Number(this.value) >= 45) {
-      $('pw3Count').value = '2';
-    }
-    calculate();
+  ['pw3Count','baseEpc','contractPrice'].forEach(id => {
+    $(id).addEventListener('input', calculate);
+    $(id).addEventListener('change', calculate);
   });
 
   calculate();
