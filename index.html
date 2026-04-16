@@ -95,10 +95,10 @@
         <label>Panels</label>
         <div class="select-wrap">
           <select id="panelCount">
-            <option value="18">18</option>
+            <option value="18" selected>18</option>
             <option value="19">19</option>
             <option value="20">20</option><option value="21">21</option>
-            <option value="22">22</option><option value="23">23</option><option value="24" selected>24</option>
+            <option value="22">22</option><option value="23">23</option><option value="24">24</option>
             <option value="25">25</option><option value="26">26</option><option value="27">27</option>
             <option value="28">28</option><option value="29">29</option><option value="30">30</option>
             <option value="31">31</option><option value="32">32</option><option value="33">33</option>
@@ -123,7 +123,7 @@
         <label>Powerwalls</label>
         <div class="select-wrap">
           <select id="pw3Count">
-            <option value="1">1 PW3</option>
+            <option value="1" selected>1 PW3</option>
             <option value="2">2 PW3</option>
             <option value="3">3 PW3</option>
           </select>
@@ -137,7 +137,7 @@
       </div>
       <div>
         <label>Contract Price</label>
-        <input id="contractPrice" type="number" min="0" step="1" value="45000" />
+        <input id="contractPrice" type="number" min="0" step="1" placeholder="e.g. 45000" />
       </div>
     </div>
   </div>
@@ -191,8 +191,20 @@
   function calculate() {
     const panels        = Number($('panelCount').value);
     const pw3           = Number($('pw3Count').value);
-    const baseEpc       = Math.max(0, Number($('baseEpc').value) || 0);
-    const contractPrice = Math.max(0, Number($('contractPrice').value) || 0);
+    const baseEpcRaw    = $('baseEpc').value;
+    const contractRaw   = $('contractPrice').value;
+
+    // If any required field is empty, show dashes
+    if (!panels || !pw3 || baseEpcRaw === '') {
+      ['commissionPpw','commissionDollars','redlinePpw'].forEach(id => {
+        $(id).textContent = '—';
+        $(id).className = 'm-value' + (id === 'redlinePpw' ? ' blue' : '');
+      });
+      return;
+    }
+
+    const baseEpc       = Math.max(0, Number(baseEpcRaw) || 0);
+    const contractPrice = Math.max(0, Number(contractRaw) || 0);
 
     const watts   = WATTS[panels];
     const delta   = baseEpc - 1.60;
@@ -200,17 +212,27 @@
     const epcBase  = pw3===1 ? EPC1[panels] : pw3===2 ? EPC2[panels] : EPC3[panels];
     const pulsePpw = epcBase + delta;
 
+    // Always show redline
+    const redline = REDLINE[panels] + delta;
+    $('redlinePpw').textContent = r2(redline);
+
+    // Only show commission if contract price is entered
+    if (contractRaw === '') {
+      $('commissionPpw').textContent = '—';
+      $('commissionPpw').className = 'm-value';
+      $('commissionDollars').textContent = '—';
+      $('commissionDollars').className = 'm-value';
+      return;
+    }
+
     const contractPpw = contractPrice / watts;
     const commPpw  = contractPpw - pulsePpw;
     const commission = commPpw * watts;
-
-    const redline = REDLINE[panels] + delta;
 
     $('commissionPpw').textContent     = r2(commPpw);
     $('commissionPpw').className       = 'm-value ' + (commPpw >= 0 ? 'positive' : 'negative');
     $('commissionDollars').textContent = fmt$.format(commission);
     $('commissionDollars').className   = 'm-value ' + (commission >= 0 ? 'positive' : 'negative');
-    $('redlinePpw').textContent        = r2(redline);
   }
 
   $('panelCount').addEventListener('change', function() {
