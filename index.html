@@ -79,7 +79,7 @@
     <div class="logo-mark"><svg viewBox="0 0 20 20"><path d="M10 2L3 7v11h5v-5h4v5h5V7L10 2z"/></svg></div>
     <div class="logo-name">Fast<span>rac</span></div>
   </div>
-  <span class="badge">Active Pricing 04/07/2026</span>
+  <span class="badge">Active Pricing 04/14/2026</span>
 </header>
 
 <div class="page">
@@ -94,36 +94,14 @@
       <div>
         <label>Panels</label>
         <div class="select-wrap">
-          <select id="panelCount">
-            <option value="18" selected>18</option>
-            <option value="19">19</option>
-            <option value="20">20</option><option value="21">21</option>
-            <option value="22">22</option><option value="23">23</option><option value="24">24</option>
-            <option value="25">25</option><option value="26">26</option><option value="27">27</option>
-            <option value="28">28</option><option value="29">29</option><option value="30">30</option>
-            <option value="31">31</option><option value="32">32</option><option value="33">33</option>
-            <option value="34">34</option><option value="35">35</option><option value="36">36</option>
-            <option value="37">37</option><option value="38">38</option><option value="39">39</option>
-            <option value="40">40</option><option value="41">41</option><option value="42">42</option>
-            <option value="43">43</option><option value="44">44</option><option value="45">45</option>
-            <option value="46">46</option><option value="47">47</option><option value="48">48</option>
-            <option value="49">49</option><option value="50">50</option><option value="51">51</option>
-            <option value="52">52</option><option value="53">53</option><option value="54">54</option>
-            <option value="55">55</option><option value="56">56</option><option value="57">57</option>
-            <option value="58">58</option><option value="59">59</option><option value="60">60</option>
-            <option value="61">61</option><option value="62">62</option><option value="63">63</option>
-            <option value="64">64</option><option value="65">65</option><option value="66">66</option>
-            <option value="67">67</option><option value="68">68</option><option value="69">69</option>
-            <option value="70">70</option><option value="71">71</option><option value="72">72</option>
-            <option value="73">73</option><option value="74">74</option><option value="75">75</option>
-          </select>
+          <select id="panelCount"></select>
         </div>
       </div>
       <div>
         <label>Battery Config</label>
         <div class="select-wrap">
           <select id="pw3Count">
-            <option value="1" selected>1 PW3</option>
+            <option value="1">1 PW3</option>
             <option value="2">1 PW3 + Exp</option>
             <option value="3">1 PW3 + 2 Exp</option>
           </select>
@@ -137,7 +115,7 @@
       </div>
       <div>
         <label>Contract Price</label>
-        <input id="contractPrice" type="number" min="0" step="1" />
+        <input id="contractPrice" type="number" min="0" step="1" placeholder="Enter from Sunraise" />
       </div>
     </div>
   </div>
@@ -156,17 +134,17 @@
   <div class="metric secondary">
     <div class="m-label">Redline PPW</div>
     <div class="m-value blue" id="redlinePpw">—</div>
-    <div class="m-hint">Enter in proposal tool</div>
+    <div class="m-hint">Enter this in Sunraise to generate proposal</div>
   </div>
 
   <div class="disclaimer">
     <p class="disc-title">⚠️ Estimated commission only. Actual amounts may vary based on final contract terms, adders, and adjustments.</p>
     <ol class="instructions">
-      <li>Enter your <strong>Base EPC ($/W)</strong> — your cost floor per watt.</li>
-      <li>Select the <strong>number of panels</strong> on the system design.</li>
-      <li>Select the <strong>battery configuration</strong> included in the deal.</li>
-      <li>The <strong>Redline PPW</strong> will calculate automatically — enter this value as the price per watt in Sunraise to generate the proposal.</li>
-      <li>Once the proposal is built, grab the <strong>total contract price from Sunraise</strong> and enter it in the Contract Price field to see your estimated commission.</li>
+      <li>Select the <strong>number of panels</strong> and <strong>battery config</strong> on the system design.</li>
+      <li>Enter your <strong>Base EPC ($/W)</strong> — defaults to $1.60. This adjusts your install cost floor.</li>
+      <li>The <strong>Redline PPW</strong> auto-populates — enter this in <strong>Sunraise</strong> to generate the proposal.</li>
+      <li>Enter the <strong>Contract Price</strong> from Sunraise to see your commission.</li>
+      <li><strong>Commission = Contract Price − (Material Cost + Watts × Base EPC)</strong></li>
     </ol>
   </div>
 
@@ -177,20 +155,62 @@
   const fmt$ = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
   const r2 = n => n.toFixed(2);
 
-  // Material cost lookup — panels 18–75
-  // Source: LightReach Pulse Pricing Matrix 04/07/2026
-  const MAT={18:15000,19:15235,20:15550,21:15900,22:16215,23:16565,24:16880,25:17230,26:17545,27:17895,28:18210,29:18560,30:18875,31:19225,32:19540,33:19890,34:20205,35:20555,36:20870,37:21220,38:21535,39:21885,40:22200,41:22550,42:22865,43:31215,44:31530,45:31880,46:32195,47:32545,48:32860,49:33210,50:33525,51:33875,52:34190,53:34540,54:34855,55:35205,56:35520,57:35870,58:36185,59:36535,60:36850,61:37200,62:37515,63:37865,64:38180,65:38530,66:38845,67:39195,68:39510,69:39860,70:40175,71:40525,72:40840,73:41190,74:41505,75:41855};
+  // Material cost only (no Fastrac fee) — cols C/D/E from new sheet
+  // [1 PW3, 1 PW3 + Exp, 1 PW3 + 2 Exp]
+  const MATERIAL = {
+    10:[15000,25500,36000],11:[15000,25500,36000],12:[15000,25500,36000],
+    13:[15000,25500,36000],14:[15000,25500,36000],15:[15000,25500,36000],
+    16:[15000,25500,36000],17:[15000,25500,36000],18:[15000,25500,36000],
+    19:[15235,25735,36235],20:[15550,26050,36550],21:[15900,26400,36900],
+    22:[16215,26715,37215],23:[16565,27065,37565],24:[16880,27380,37880],
+    25:[17230,27730,38230],26:[17545,28045,38545],27:[17895,28395,38895],
+    28:[18210,28710,39210],29:[18560,29060,39560],30:[18875,29375,39875],
+    31:[19225,29725,40225],32:[19540,30040,40540],33:[19890,30390,40890],
+    34:[20205,30705,41205],35:[20555,31055,41555],36:[20870,31370,41870],
+    37:[21220,31720,42220],38:[21535,32035,42535],39:[21885,32385,42885],
+    40:[22200,32700,43200],41:[22550,33050,43550],42:[22865,33365,43865],
+    43:[31215,41715,52215],44:[31530,42030,52530],45:[31880,42380,52880],
+    46:[32195,42695,53195],47:[32545,43045,53545],48:[32860,43360,53860],
+    49:[33210,43710,54210],50:[33525,44025,54525],51:[33875,44375,54875],
+    52:[34190,44690,55190],53:[34540,45040,55540],54:[34855,45355,55855],
+    55:[35205,45705,56205],56:[35520,46020,56520],57:[35870,46370,56870],
+    58:[36185,46685,57185],59:[36535,47035,57535],60:[36850,47350,57850],
+    61:[37200,47700,58200],62:[37515,48015,58515],63:[37865,48365,58865],
+    64:[38180,48680,59180],65:[38530,49030,59530],66:[38845,49345,59845],
+    67:[39195,49695,60195],68:[39510,50010,60510],69:[39860,50360,60860],
+    70:[40175,50675,61175],71:[40525,51025,61525],72:[40840,51340,61840],
+    73:[41190,51690,62190],74:[41505,52005,62505],75:[41855,52355,62855],
+  };
 
-  const EXP_PACK = 10500; // per expansion pack
-  const BASE_MAT = 15000; // minimum material cost (≤18 panels, no expansions)
+  // Redline PPW — Sunraise pricing from new sheet (base at $1.60 EPC)
+  const REDLINE_BASE = {
+    10:1.60,11:1.60,12:1.60,13:1.60,14:1.60,15:1.60,16:1.60,17:1.60,18:1.60,
+    19:1.63,20:1.67,21:1.71,22:1.74,23:1.77,24:1.80,25:1.82,26:1.84,27:1.87,
+    28:1.89,29:1.91,30:1.92,31:1.94,32:1.95,33:1.97,34:1.98,35:2.00,36:2.01,
+    37:2.02,38:2.03,39:2.04,40:2.05,41:2.06,42:2.07,43:2.54,44:2.54,45:2.54,
+    46:2.53,47:2.53,48:2.53,49:2.53,50:2.53,51:2.53,52:2.52,53:2.52,54:2.52,
+    55:2.52,56:2.52,57:2.52,58:2.51,59:2.51,60:2.51,61:2.51,62:2.51,63:2.51,
+    64:2.51,65:2.51,66:2.50,67:2.50,68:2.50,69:2.50,70:2.50,71:2.50,72:2.50,
+    73:2.50,74:2.50,75:2.50,
+  };
+
+  // Populate panel dropdown 10–75
+  const sel = $('panelCount');
+  for (let p = 10; p <= 75; p++) {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = p;
+    if (p === 18) opt.selected = true;
+    sel.appendChild(opt);
+  }
 
   function calculate() {
-    const panels       = Number($('panelCount').value);
-    const pw3          = Number($('pw3Count').value);
-    const baseEpcRaw   = $('baseEpc').value;
-    const contractRaw  = $('contractPrice').value;
+    const panels      = Number($('panelCount').value);
+    const pw3         = Number($('pw3Count').value);
+    const baseEpcRaw  = $('baseEpc').value;
+    const contractRaw = $('contractPrice').value;
 
-    if (!panels || !pw3 || baseEpcRaw === '') {
+    if (baseEpcRaw === '') {
       ['commissionPpw','commissionDollars','redlinePpw'].forEach(id => {
         $(id).textContent = '—';
         $(id).className = 'm-value' + (id === 'redlinePpw' ? ' blue' : '');
@@ -198,32 +218,29 @@
       return;
     }
 
-    const baseEpc      = Math.max(0, Number(baseEpcRaw) || 0);
-    const contractPrice = Math.max(0, Number(contractRaw) || 0);
+    const baseEpc   = Math.max(0, Number(baseEpcRaw) || 0);
+    const watts     = panels * 400;
+    const material  = MATERIAL[panels][pw3 - 1];
 
-    const watts    = panels * 400;
-    const mat      = MAT[panels];
-    const nExp     = pw3 - 1; // 0, 1, or 2 expansion packs
+    // Install cost = Material + (Watts × Base EPC)
+    const installCost = material + (watts * baseEpc);
 
-    // pulsePpw = material_per_watt + baseEpc
-    const pulsePpw = mat / watts + baseEpc;
-
-    // redline = baseEpc + incremental_material_per_watt
-    const redline  = baseEpc + (mat - BASE_MAT) / watts;
+    // Redline = base redline from sheet + delta from $1.60
+    const delta   = baseEpc - 1.60;
+    const redline = REDLINE_BASE[panels] + delta;
     $('redlinePpw').textContent = r2(redline);
 
     if (contractRaw === '') {
-      $('commissionPpw').textContent = '—';
-      $('commissionPpw').className = 'm-value';
+      $('commissionPpw').textContent     = '—';
+      $('commissionPpw').className       = 'm-value';
       $('commissionDollars').textContent = '—';
-      $('commissionDollars').className = 'm-value';
+      $('commissionDollars').className   = 'm-value';
       return;
     }
 
-    // Total cost = material + expansion packs + fastrac fee
-    const totalCost  = mat + nExp * EXP_PACK + baseEpc * watts;
-    const commission = contractPrice - totalCost;
-    const commPpw    = commission / watts;
+    const contractPrice = Math.max(0, Number(contractRaw) || 0);
+    const commission    = contractPrice - installCost;
+    const commPpw       = commission / watts;
 
     $('commissionPpw').textContent     = r2(commPpw);
     $('commissionPpw').className       = 'm-value ' + (commPpw >= 0 ? 'positive' : 'negative');
@@ -231,12 +248,8 @@
     $('commissionDollars').className   = 'm-value ' + (commission >= 0 ? 'positive' : 'negative');
   }
 
-  $('panelCount').addEventListener('change', function() {
-    if (Number(this.value) >= 43) $('pw3Count').value = '2';
-    calculate();
-  });
-
-  ['pw3Count','baseEpc','contractPrice'].forEach(id => {
+  ['panelCount','pw3Count'].forEach(id => $(id).addEventListener('change', calculate));
+  ['baseEpc','contractPrice'].forEach(id => {
     $(id).addEventListener('input', calculate);
     $(id).addEventListener('change', calculate);
   });
